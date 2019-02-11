@@ -3,3 +3,16 @@ CREATE TABLE "person" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+
+CREATE TABLE "player" (
+"id" SERIAL PRIMARY KEY,
+"player_name" VARCHAR (80) NOT NULL,
+"person_id" INT REFERENCES "person"
+);
+
+CREATE TABLE "box_score" (
+"id" SERIAL PRIMARY KEY,
+ "FGA" INT DEFAULT 0,"FGM" INT DEFAULT 0, "3PA" INT DEFAULT 0, "3PM" INT DEFAULT 0, 
+ "REB" INT DEFAULT 0, "AST" INT DEFAULT 0, "PTS" INT DEFAULT 0, 
+ "game_mode" VARCHAR (15) NOT NULL, "player_id" INT REFERENCES "player");
