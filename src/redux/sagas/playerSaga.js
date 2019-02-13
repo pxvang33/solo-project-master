@@ -22,6 +22,7 @@ function* addPlayerName(action) {
         yield put(newAction);
     } catch (error) {
         console.log('error in addPlayer saga', error);
+        alert("Can't add a player without a name")
     }
 } // end addPlayer
 

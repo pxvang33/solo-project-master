@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
 // this could also be written with destructuring parameters as:
@@ -9,8 +10,11 @@ class UserPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerName: '',
-      person_id: this.props.reduxStore.user.id
+      newPlayer: {
+        playerName: null,
+        person_id: this.props.reduxStore.user.id,
+        player_id: null 
+      } // end newPlayer
     } // end state
   } // end constructor
 
@@ -19,15 +23,18 @@ class UserPage extends Component {
   }
 
   playerNameChange = (event) => {
-    this.setState ({
-      playerName: event.target.value,
-    })
+    this.setState({
+      newPlayer: {
+        ...this.state.newPlayer,
+        playerName: event.target.value,
+      }
+    });
     console.log('IN STATE', this.state);
     
   } // end playerNameChange
 
   addPlayer = () => {
-    let playerToAdd = this.state;
+    let playerToAdd = this.state.newPlayer;
     let action = { type: 'ADD_PLAYER_NAME', payload: playerToAdd};
     this.props.dispatch(action);
 
@@ -40,16 +47,19 @@ class UserPage extends Component {
         <h1 id="welcome">
           Welcome, {this.props.reduxStore.user.username}!
         </h1> 
-          <input onChange={this.playerNameChange} placeholder="Add Player" />
+          <input  onChange={this.playerNameChange} placeholder="Add Player" />
           <button onClick={this.addPlayer}>Add Player</button>
           <br/>
 
-          <select>
+          <select onChange={this.handlePlayerChange}>
             <option value="">Select player </option>
             {this.props.reduxStore.player.map((name, i)=>{
-              return <option key ={i} value ={name.id}> {name.player_name} </option>
+              return <option key={i} value={name.id}> {name.player_name} </option> 
             })} 
           </select>
+          <br/>
+        <Link to="/livegame"> <button>Live Game</button></Link>
+          
       </div>
     ) // end return
   } // ends render
