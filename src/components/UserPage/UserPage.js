@@ -10,6 +10,7 @@ class UserPage extends Component {
     super(props);
     this.state = {
       playerName: '',
+      person_id: this.props.reduxStore.user.id
     } // end state
   } // end constructor
 
@@ -20,6 +21,13 @@ class UserPage extends Component {
     console.log('IN STATE', this.state);
     
   } // end playerNameChange
+
+  addPlayer = () => {
+    let playerToAdd = this.state.playerName;
+    let action = { type: 'ADD_PLAYER_NAME', payload: playerToAdd};
+    this.props.dispatch(action);
+
+  } // end addPlayer
   render() {
     return(
       <div>
@@ -29,7 +37,7 @@ class UserPage extends Component {
           Welcome, {this.props.reduxStore.user.username}!
         </h1> 
           <input onChange={this.playerNameChange} placeholder="Add Player" />
-          <button >Add Player</button>
+          <button onClick={this.addPlayer}>Add Player</button>
         {/* <LogOutButton className="log-in" /> */}
       </div>
     ) // end return
