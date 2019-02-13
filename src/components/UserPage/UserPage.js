@@ -17,7 +17,7 @@ class UserPage extends Component {
   componentDidMount() {
     this.props.dispatch({type: 'FETCH_PLAYER'});
   }
-  
+
   playerNameChange = (event) => {
     this.setState ({
       playerName: event.target.value,
@@ -42,7 +42,14 @@ class UserPage extends Component {
         </h1> 
           <input onChange={this.playerNameChange} placeholder="Add Player" />
           <button onClick={this.addPlayer}>Add Player</button>
-        {/* <LogOutButton className="log-in" /> */}
+          <br/>
+
+          <select>
+            <option value="">Select player </option>
+            {this.props.reduxStore.player.map((name, i)=>{
+              return <option key ={i} value ={name.id}> {name.player_name} </option>
+            })} 
+          </select>
       </div>
     ) // end return
   } // ends render
