@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -14,6 +14,10 @@ class UserPage extends Component {
     } // end state
   } // end constructor
 
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_PLAYER'});
+  }
+  
   playerNameChange = (event) => {
     this.setState ({
       playerName: event.target.value,
@@ -23,7 +27,7 @@ class UserPage extends Component {
   } // end playerNameChange
 
   addPlayer = () => {
-    let playerToAdd = this.state.playerName;
+    let playerToAdd = this.state;
     let action = { type: 'ADD_PLAYER_NAME', payload: playerToAdd};
     this.props.dispatch(action);
 
@@ -31,7 +35,7 @@ class UserPage extends Component {
   render() {
     return(
       <div>
-        {JSON.stringify(this.props)}
+        {JSON.stringify(this.props.reduxStore.player)}
 
         <h1 id="welcome">
           Welcome, {this.props.reduxStore.user.username}!
