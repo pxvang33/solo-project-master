@@ -22,9 +22,10 @@ router.post('/', rejectUnauthenticated, (req, res)=>{
 
 router.get('/', rejectUnauthenticated, (req, res) =>{
     // const queryText = (` SELECT * FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
-    const queryText = (`SELECT "player".* FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
+    const queryText = (`SELECT "player".* FROM "player" JOIN "person" ON "person"."id" = "player"."person_id" 
+                        WHERE "person"."id" = $1;`)
 
-    pool.query(queryText)
+    pool.query(queryText, [req.user.id] )
     .then((result)=> {
         res.send(result.rows);
     }).catch((error)=>{
