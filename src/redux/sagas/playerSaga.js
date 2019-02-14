@@ -19,20 +19,14 @@ function* addPlayerName(action) {
     try {
         yield axios.post('/api/player', action.payload);
         const newAction = {type: 'FETCH_PLAYER'};
+        // const nextAction = {type: 'UPDATE_PLAYERID_BOXSCORE', payload: action.payload}
         yield put(newAction);
+        // yield put(nextAction);
     } catch (error) {
         console.log('error in addPlayer saga', error);
         alert("Can't add a player without a name")
     }
 } // end addPlayer
-
-
-
-
-
-
-
-
 
 
 export default playerSaga;

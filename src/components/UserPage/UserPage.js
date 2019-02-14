@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
 class UserPage extends Component {
@@ -37,10 +37,12 @@ class UserPage extends Component {
   } // end addPlayer
 
   playerIdChange = (event) => {
+    console.log('in playerIdchange', event.target.value);
+    
     this.setState({
       newPlayer: {
         ...this.state.newPlayer,
-        player_id: event.target.value
+        player_id: event.target.value,
       }
     })
   }
@@ -49,29 +51,33 @@ class UserPage extends Component {
     // Either pass player as a route param OR store in redux, constatnly update redux store to show 
     // up to date stats
     if (event.target.value === 'live_game') {
-      this.setState({
-        newPlayer: {
-          ...this.state.newPlayer,
-          game_mode: 'live_game',
-        }
-      });
-      let boxscoreInfo = this.state.newPlayer
-      let action = { type: 'ADD_BOXSCORE_INFO', payload: boxscoreInfo}
+      let boxscoreInfo =  
+          {
+            // playerName: this.state.newPlayer.playerName,
+            person_id: this.props.reduxStore.user.id,
+            player_id: this.state.newPlayer.player_id,
+            game_mode: event.target.value
+          }
+      let action = { type: 'UPDATE_BOXSCORE', payload: boxscoreInfo }
       this.props.dispatch(action);
+      this.props.history.push('/livegame');
+      console.log('in action.payload', action.payload);
     } else if (event.target.value === 'practice') {
-      this.setState({
-        newPlayer: {
-          ...this.state.newPlayer,
-          game_mode: 'practice',
-        }
-      });
-      let boxscoreInfo = this.state.newPlayer
-      let action = { type: 'ADD_BOXSCORE_INFO', payload: boxscoreInfo }
+      let boxscoreInfo =
+      {
+        // playerName: this.state.newPlayer.playerName,
+        person_id: this.props.reduxStore.user.id,
+        player_id: this.state.newPlayer.player_id,
+        game_mode: event.target.value
+      }
+      let action = { type: 'UPDATE_BOXSCORE', payload: boxscoreInfo }
       this.props.dispatch(action);
+      console.log('in action.payload', action.payload);
     }
+    
   }
-  render() {
-    console.log('inplayerId', this.state.newPlayer);
+  render() {    
+
     return(
       <div>
         {JSON.stringify(this.props.reduxStore.player)}
@@ -79,11 +85,13 @@ class UserPage extends Component {
         <h1 id="welcome">
           Welcome, {this.props.reduxStore.user.username}!
         </h1> 
+        {JSON.stringify(this.state)}
+
           <input  onChange={this.playerNameChange} placeholder="Add Player" />
           <button onClick={this.addPlayer}>Add Player</button>
           <br/>
 
-        <select onChange={this.playerIdChange} value={this.state.newPlayer.player_id}>
+        <select onChange={this.playerIdChange}>
             <option value="">Select player </option>
             {this.props.reduxStore.player.map((name, i)=>{
               return <option key={i} value={name.id}> {name.player_name} </option> 
