@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +10,8 @@ class UserPage extends Component {
       newPlayer: {
         playerName: null,
         person_id: this.props.reduxStore.user.id,
-        player_id: null 
+        player_id: null,
+        game_mode: null,
       } // end newPlayer
     } // end state
   } // end constructor
@@ -30,16 +28,50 @@ class UserPage extends Component {
       }
     });
     console.log('IN STATE', this.state);
-    
   } // end playerNameChange
 
   addPlayer = () => {
     let playerToAdd = this.state.newPlayer;
     let action = { type: 'ADD_PLAYER_NAME', payload: playerToAdd};
     this.props.dispatch(action);
-
   } // end addPlayer
+
+  playerIdChange = (event) => {
+    this.setState({
+      newPlayer: {
+        ...this.state.newPlayer,
+        player_id: event.target.value
+      }
+    })
+  }
+  submitGameMode = (event) => {
+    console.log('submitgamemode works');
+    // Either pass player as a route param OR store in redux, constatnly update redux store to show 
+    // up to date stats
+    if (event.target.value === 'live_game') {
+      this.setState({
+        newPlayer: {
+          ...this.state.newPlayer,
+          game_mode: 'live_game',
+        }
+      });
+      let boxscoreInfo = this.state.newPlayer
+      let action = { type: 'ADD_BOXSCORE_INFO', payload: boxscoreInfo}
+      this.props.dispatch(action);
+    } else if (event.target.value === 'practice') {
+      this.setState({
+        newPlayer: {
+          ...this.state.newPlayer,
+          game_mode: 'practice',
+        }
+      });
+      let boxscoreInfo = this.state.newPlayer
+      let action = { type: 'ADD_BOXSCORE_INFO', payload: boxscoreInfo }
+      this.props.dispatch(action);
+    }
+  }
   render() {
+    console.log('inplayerId', this.state.newPlayer);
     return(
       <div>
         {JSON.stringify(this.props.reduxStore.player)}
@@ -51,14 +83,15 @@ class UserPage extends Component {
           <button onClick={this.addPlayer}>Add Player</button>
           <br/>
 
-          <select onChange={this.handlePlayerChange}>
+        <select onChange={this.playerIdChange} value={this.state.newPlayer.player_id}>
             <option value="">Select player </option>
             {this.props.reduxStore.player.map((name, i)=>{
               return <option key={i} value={name.id}> {name.player_name} </option> 
             })} 
           </select>
           <br/>
-        <Link to="/livegame"> <button>Live Game</button></Link>
+        <button onClick={this.submitGameMode} value="live_game">Live Game</button>
+        <button onClick={this.submitGameMode} value="practice">Practice</button>
           
       </div>
     ) // end return
