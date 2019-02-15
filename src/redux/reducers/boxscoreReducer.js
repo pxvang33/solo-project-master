@@ -20,28 +20,33 @@ const game_mode = (state = boxscore, action) => {
     }
     else if (action.type === 'TWO_POINT_MAKE') {
         return { ...state, FGA: boxscore.FGA += 1, FGM: boxscore.FGM += 1, PTS: boxscore.PTS += 2}
-    } else if (action.type === 'TWO_POINT_MISS') {
+    } 
+    else if (action.type === 'TWO_POINT_MISS') {
         return { ...state, FGA: boxscore.FGA += 1,}
     }
-    // if (action.type === 'UPDATE_BOXSCORE') {
-    //     return { ...state, player_id: action.payload.player_id }
-    // }
-    // else if (action.type === 'UPDATE_PLAYERID_BOXSCORE'){
-    //     return { ...state, player_id: action.payload.player_id }
-    // }
+    else if (action.type === 'THREE_POINT_MAKE') {
+        return { ...state, FGA: boxscore.FGA += 1, FGM: boxscore.FGM += 1, 
+            THREEPA: boxscore.THREEPA += 1, THREEPM: boxscore.THREEPM += 1, PTS: boxscore.PTS += 3 }
+    }
+    else if (action.type === 'THREE_POINT_MISS') {
+        return { ...state, FGA: boxscore.FGA += 1, 
+            THREEPA: boxscore.THREEPA += 1, }
+    }
+    else if (action.type === 'ADD_REBOUND') {
+        return { ...state, REB: boxscore.REB += 1, }
+    }
+    else if (action.type === 'ADD_ASSIST') {
+        return { ...state, AST: boxscore.AST += 1, }
+    }
+    else if (action.type === 'ADD_TURNOVER') {
+        return { ...state, TO: boxscore.TO += 1, }
+    }
+    else if (action.type === 'CLEAR_BOXSCORE'){
+        return boxscore
+    }
     return state;
-
 }
-
-// const player_id = (state = boxscore, action) => {
-//     if (action.type === 'UPDATE_BOXSCORE') {
-//         return { ...state, player_id: action.payload.player_id }
-//     }
-//     return state;
-// }
-
 
 export default combineReducers({
     game_mode,
-    // player_id,
 });
