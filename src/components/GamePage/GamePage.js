@@ -61,7 +61,7 @@ class GamePage extends Component {
             <div>
                 <div>
                     <h2>{this.props.reduxStore.boxscore.game_mode.playerName}</h2>
-                    {JSON.stringify(this.props.reduxStore.boxscore)}
+                    {/* {JSON.stringify(this.props.reduxStore.boxscore)} */}
                 </div>
                 <div>
                     <table className="">

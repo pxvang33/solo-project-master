@@ -45,7 +45,7 @@ class PlayerHistory extends Component {
         const { value } = this.state;
         return (
             <div>
-                {JSON.stringify(this.props)}
+                {/* {JSON.stringify(this.props)} */}
                 <h2>Player History</h2>
                 <div className={classes.root}>
                     <AppBar position="static">
