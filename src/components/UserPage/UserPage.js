@@ -70,7 +70,7 @@ class UserPage extends Component {
     } else if (event.target.value === 'practice') {
       let boxscoreInfo =
       {
-        // playerName: this.state.newPlayer.playerName,
+        playerName: this.state.newPlayer.playerName,
         person_id: this.props.reduxStore.user.id,
         player_id: parseInt(this.state.newPlayer.player_id),
         game_mode: event.target.value

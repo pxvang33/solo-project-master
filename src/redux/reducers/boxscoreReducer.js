@@ -30,7 +30,7 @@ const game_mode = (state = boxscore, action) => {
     }
     else if (action.type === 'THREE_POINT_MISS') {
         return { ...state, FGA: boxscore.FGA += 1, 
-            THREEPA: boxscore.THREEPA += 1, }
+             THREEPA: boxscore.THREEPA += 1}
     }
     else if (action.type === 'ADD_REBOUND') {
         return { ...state, REB: boxscore.REB += 1, }

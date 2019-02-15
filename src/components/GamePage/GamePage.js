@@ -64,6 +64,34 @@ class GamePage extends Component {
                     {JSON.stringify(this.props.reduxStore.boxscore)}
                 </div>
                 <div>
+                    <table className="">
+                        <thead>
+                            <tr>
+                                <th>FGM</th>
+                                <th>FGA</th>
+                                <th>3PM</th>
+                                <th>3PA</th>
+                                <th>REB</th>
+                                <th>AST</th>
+                                <th>TO</th>
+                                <th>PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{this.props.reduxStore.boxscore.game_mode.FGM}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.FGA}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.THREEPM}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.THREEPA}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.REB}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.AST}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.TO}</td>
+                                <td>{this.props.reduxStore.boxscore.game_mode.PTS}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
                         <Card className={classes.card}>
                             <CardContent>
                                 <Typography >
