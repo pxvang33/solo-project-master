@@ -47,6 +47,10 @@ class UserPage extends Component {
       }
     })
   }
+  viewHistory = () => {
+    this.props.history.push('/playerhistory');
+
+  }
   submitGameMode = (event) => {
     console.log('submitgamemode works');
     // Either pass player as a route param OR store in redux, constatnly update redux store to show 
@@ -101,6 +105,9 @@ class UserPage extends Component {
         <br />
         <button onClick={this.submitGameMode} value="live_game">Live Game</button>
         <button onClick={this.submitGameMode} value="practice">Practice</button>
+        <br />
+        <br />
+        <button onClick={this.viewHistory} value="player_history">Player History</button>
 
       </div>
     ) // end return

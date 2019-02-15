@@ -21,6 +21,7 @@ router.post('/', rejectUnauthenticated, (req, res)=>{
 })
 
 router.get('/', rejectUnauthenticated, (req, res) =>{
+    console.log('in req asdlfkjdsoif', req);
     // const queryText = (` SELECT * FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
     const queryText = (`SELECT "player".* FROM "player" JOIN "person" ON "person"."id" = "player"."person_id" 
                         WHERE "person"."id" = $1;`)

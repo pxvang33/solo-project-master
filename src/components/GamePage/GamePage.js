@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 // import { Link } from 'react-router-dom';
+
+const styles = {
+    card: {
+        maxWidth: 230,
+    },
+    media: {
+        height: 140,
+    },
+};
+
 
 class GamePage extends Component {
     twoPointMake = () => {
@@ -45,6 +56,7 @@ class GamePage extends Component {
         this.props.dispatch(action);
     }
     render() {
+        const { classes } = this.props;
         return (
             <div>
                 <div>
@@ -52,10 +64,10 @@ class GamePage extends Component {
                     {JSON.stringify(this.props.reduxStore.boxscore)}
                 </div>
                 <div>
-                        <Card className="">
+                        <Card className={classes.card}>
                             <CardContent>
                                 <Typography >
-                                <h3>2 point</h3>
+                                2 point
                                 </Typography>
                                 <CardActions>
                                     <Button  onClick={this.twoPointMake} variant="outlined" color="primary" className="make">
@@ -65,10 +77,10 @@ class GamePage extends Component {
                                 </CardActions>
                             </CardContent>
                         </Card>
-                    <Card className="">
+                    <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                <h3>3 point</h3>
+                                3 point
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.threePointMake} variant="outlined" color="primary" className="make">
@@ -78,10 +90,10 @@ class GamePage extends Component {
                             </CardActions>
                         </CardContent>
                     </Card>
-                    <Card className="">
+                    <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                <h3>Rebound</h3>
+                                Rebound
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.addRebound} variant="outlined" color="primary" className="make">
@@ -89,10 +101,10 @@ class GamePage extends Component {
                             </CardActions>
                         </CardContent>
                     </Card>
-                    <Card className="">
+                    <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                <h3>Assist/Turnover</h3>
+                                Assist/Turnover
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.addAssist} variant="outlined" color="primary" className="make">
@@ -115,4 +127,4 @@ const mapStateToProps = reduxStore => ({
     reduxStore
 });
 
-export default connect(mapStateToProps)(GamePage);
+export default connect(mapStateToProps)(withStyles(styles)(GamePage));
