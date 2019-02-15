@@ -7,7 +7,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('in req.body', req.body);
 
     const boxscore = req.body;
-    const queryText = `INSERT INTO "box_score" ("FGA", "FGM", "3PA", "3PM", "REB", "AST", "TO", "PTS", "game_mode", "player_id")
+    const queryText = `INSERT INTO "box_score" ("FGA", "FGM", "THREEPA", "THREEPM", "REB", "AST", "TO", "PTS", "game_mode", "player_id")
                         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
     const queryValues = [boxscore.FGA, boxscore.FGM, boxscore.THREEPA, 
         boxscore.THREEPM, boxscore.REB, boxscore.AST, boxscore.TO, boxscore.PTS, boxscore.game_mode, boxscore.player_id,];

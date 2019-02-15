@@ -55,7 +55,42 @@ class PlayerHistory extends Component {
                             {/* <Tab label="Item Three" /> */}
                         </Tabs>
                     </AppBar>
-                    {value === 0 && <TabContainer>Item One</TabContainer>}
+                    {value === 0 && <TabContainer>
+                        <table className="">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Player Name</th>
+                                    <th>FGM</th>
+                                    <th>FGA</th>
+                                    <th>3PM</th>
+                                    <th>3PA</th>
+                                    <th>REB</th>
+                                    <th>AST</th>
+                                    <th>TO</th>
+                                    <th>PTS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* plants go here */}
+                                {this.props.reduxStore.boxscore.boxscoreHistory.map((boxscore) => {
+                                    return(
+                                        <tr key={boxscore.id} >
+                                            <td>{boxscore.date}</td>
+                                            <td>{boxscore.player_name}</td>
+                                            <td>{boxscore.FGM}</td>
+                                            <td>{boxscore.FGA}</td>
+                                            <td>{boxscore.THREEPM}</td>
+                                            <td>{boxscore.THREEPA}</td>
+                                            <td>{boxscore.REB}</td>
+                                            <td>{boxscore.AST}</td>
+                                            <td>{boxscore.TO}</td>
+                                            <td>{boxscore.PTS}</td>
+                                        </tr>)
+                                })}
+                            </tbody>
+                        </table>
+                        </TabContainer>}
                     {value === 1 && <TabContainer>Item Two</TabContainer>}
                     {/* {value === 2 && <TabContainer>Item Three</TabContainer>} */}
                 </div>
