@@ -47,3 +47,25 @@ input {
     border-bottom:1px solid #444; 
     cursor: pointer;
 }
+.garden {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.garden td, .garden th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.garden tr:nth-child(even){background-color: #f2f2f2;}
+
+.garden tr:hover {background-color: #ddd;}
+
+.garden th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: darkgreen;
+  color: white;
+}

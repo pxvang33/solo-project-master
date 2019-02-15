@@ -43,6 +43,7 @@ class PlayerHistory extends Component {
     render() {
         const { classes } = this.props;
         const { value } = this.state;
+        
         return (
             <div>
                 {/* {JSON.stringify(this.props)} */}
@@ -56,7 +57,7 @@ class PlayerHistory extends Component {
                         </Tabs>
                     </AppBar>
                     {value === 0 && <TabContainer>
-                        <table className="">
+                        <table className="garden">
                             <thead>
                                 <tr>
                                     <th>Date</th>
