@@ -17,6 +17,33 @@ class GamePage extends Component {
         let action = {type: 'TWO_POINT_MISS'};
         this.props.dispatch(action)
     }
+    threePointMake = () => {
+        let action = { type: 'THREE_POINT_MAKE' };
+        this.props.dispatch(action)
+    }
+
+    threePointMiss = () => {
+        let action = { type: 'THREE_POINT_MISS' };
+        this.props.dispatch(action)
+    }
+    addRebound = () => {
+        let action = { type: 'ADD_REBOUND' };
+        this.props.dispatch(action)
+    }
+
+    addAssist = () => {
+        let action = { type: 'ADD_ASSIST' };
+        this.props.dispatch(action)
+    }
+    addTurnover = () => {
+        let action = { type: 'ADD_TURNOVER' };
+        this.props.dispatch(action)
+    }
+    addBoxscore = () => {
+        let boxscoreFromReduxStore = this.props.reduxStore.boxscore.game_mode
+        let action = { type: 'ADD_BOXSCORE', payload: boxscoreFromReduxStore}
+        this.props.dispatch(action);
+    }
     render() {
         return (
             <div>
@@ -44,9 +71,9 @@ class GamePage extends Component {
                                 <h3>3 point</h3>
                             </Typography>
                             <CardActions>
-                                <Button variant="outlined" color="primary" className="make">
+                                <Button onClick={this.threePointMake} variant="outlined" color="primary" className="make">
                                     Make</Button>
-                                <Button variant="outlined" color="primary" className="miss">
+                                <Button onClick={this.threePointMiss} variant="outlined" color="primary" className="miss">
                                     Miss</Button>
                             </CardActions>
                         </CardContent>
@@ -57,7 +84,7 @@ class GamePage extends Component {
                                 <h3>Rebound</h3>
                             </Typography>
                             <CardActions>
-                                <Button variant="outlined" color="primary" className="make">
+                                <Button onClick={this.addRebound} variant="outlined" color="primary" className="make">
                                     Rebound</Button>
                             </CardActions>
                         </CardContent>
@@ -68,13 +95,16 @@ class GamePage extends Component {
                                 <h3>Assist/Turnover</h3>
                             </Typography>
                             <CardActions>
-                                <Button variant="outlined" color="primary" className="make">
+                                <Button onClick={this.addAssist} variant="outlined" color="primary" className="make">
                                     Assist</Button>
-                                <Button variant="outlined" color="primary" className="miss">
+                                <Button onClick={this.addTurnover} variant="outlined" color="primary" className="miss">
                                     Turnover</Button>
                             </CardActions>
                         </CardContent>
                     </Card>
+                    <br />
+
+                    <Button onClick={this.addBoxscore} variant="outlined" color="primary" >Submit game</Button>
                 </div>
             </div>
         )

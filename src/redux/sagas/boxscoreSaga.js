@@ -1,30 +1,30 @@
-// import { put, takeLatest, } from 'redux-saga/effects';
-// import axios from 'axios';
+import { put, takeLatest, } from 'redux-saga/effects';
+import axios from 'axios';
 
-// function* boxscoreSaga() {
-//     yield takeLatest('FETCH_PLAYER', fetchPlayer)
-//     yield takeLatest('ADD_PLAYER_NAME', addPlayerName)
-// }
-// function* fetchPlayer() {
+function* boxscoreSaga() {
+    // yield takeLatest('FETCH_PLAYER', fetchPlayer)
+    // yield takeLatest('FETCH_BOXSCORE_HISTORY', fetchBoxscoreHistory)
+    yield takeLatest('ADD_BOXSCORE', addBoxscore)
+}
+// function* fetchBoxscoreHistory() {
 //     try {
-//         const playerResponse = yield axios.get('/api/player');
-//         const nextAction = { type: 'SET_PLAYER', payload: playerResponse.data };
+//         const boxscoreResponse = yield axios.get('/api/boxscore');
+//         const nextAction = { type: 'SET_BOXSCORE_HISTORY', payload: boxscoreResponse.data };
 //         yield put(nextAction);
 //     } catch (error) {
-//         console.log('error in fetchPlayer GET', error);
+//         console.log('error in fetchBoxscoreHistory GET', error);
 //     }
 // }
 
-// function* addPlayerName(action) {
-//     try {
-//         yield axios.post('/api/player', action.payload);
-//         const newAction = { type: 'FETCH_PLAYER' };
-//         yield put(newAction);
-//     } catch (error) {
-//         console.log('error in addPlayer saga', error);
-//         alert("Can't add a player without a name")
-//     }
-// } // end addPlayer
+function* addBoxscore(action) {
+    try {
+        yield axios.post('/api/boxscore', action.payload);
+        const newAction = { type: 'FETCH_BOXSCORE_HISTORY' };
+        yield put(newAction);
+    } catch (error) {
+        console.log('error in addBoxscore saga', error);
+    }
+} // end addPlayer
 
 
-// export default boxscoreSaga;
+export default boxscoreSaga;
