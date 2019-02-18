@@ -36,6 +36,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 })
 
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
+    const boxscore = req.params
+    const queryText = `DELETE FROM "box_score" WHERE id=$1;`;
+    pool.query(queryText, [boxscore.id])
+    .then ((responseFromDatabase)=>{
+        console.log('in delete responseFromdatabase', responseFromDatabase);
+        res.sendStatus(200);
+    }).catch((error)=>{
+        console.log('Error completing DELETE boxscore query', error);
+        res.sendStatus(500);
+    });
+})
+
 
 
 module.exports = router;

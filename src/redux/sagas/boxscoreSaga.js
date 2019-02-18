@@ -4,6 +4,7 @@ import axios from 'axios';
 function* boxscoreSaga() {
     yield takeLatest('FETCH_BOXSCORE_HISTORY', fetchBoxscoreHistory)
     yield takeLatest('ADD_BOXSCORE', addBoxscore)
+    yield takeLatest('DELETE_BOXSCORE', deleteBoxscore)
 }
 function* fetchBoxscoreHistory() {
     try {
@@ -15,7 +16,6 @@ function* fetchBoxscoreHistory() {
     }
 }
 
-
 function* addBoxscore(action) {
     try {
         yield axios.post('/api/boxscore', action.payload);
@@ -25,6 +25,17 @@ function* addBoxscore(action) {
         console.log('error in addBoxscore saga', error);
     }
 } // end addPlayer
+function* deleteBoxscore(action) {
+    let boxscore = action.payload;
+    console.log('in delete boxscore', boxscore);
+    try {
+        yield axios.delete(`/api/boxscore/${boxscore}`);
+        let nextAction = { type: 'FETCH_BOXSCORE_HISTORY' };
+        yield put(nextAction);
+    } catch (error) {
+        console.log('in delete error', error);
+    }
+}
 
 
 export default boxscoreSaga;

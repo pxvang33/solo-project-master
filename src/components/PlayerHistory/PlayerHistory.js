@@ -40,13 +40,18 @@ class PlayerHistory extends Component {
         this.props.dispatch(action)
     }
 
+    deleteBoxscore = (id) => {
+        const action = { type: 'DELETE_BOXSCORE', payload: id }
+        this.props.dispatch(action);
+    }
+
     render() {
         const { classes } = this.props;
         const { value } = this.state;
         
         return (
             <div>
-                {/* {JSON.stringify(this.props)} */}
+                {JSON.stringify(this.props)}
                 <h2>Player History</h2>
                 <div className={classes.root}>
                     <AppBar position="static">
@@ -60,6 +65,7 @@ class PlayerHistory extends Component {
                         <table className="garden">
                             <thead>
                                 <tr>
+                                    <th>Edit</th>
                                     <th>Date</th>
                                     <th>Player Name</th>
                                     <th>FGM</th>
@@ -77,6 +83,7 @@ class PlayerHistory extends Component {
                                 {this.props.reduxStore.boxscore.boxscoreHistory.map((boxscore) => {
                                     return(
                                         <tr key={boxscore.id} >
+                                            <td><button onClick ={ () => {this.deleteBoxscore(boxscore.id)} }>delete</button><button>edit</button></td>
                                             <td>{boxscore.date}</td>
                                             <td>{boxscore.player_name}</td>
                                             <td>{boxscore.FGM}</td>
