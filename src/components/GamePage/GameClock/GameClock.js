@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import GameClockTimer from './GameClockTimer';
 // import GameClockTimerInput from './GameClockTimerInput';
 // import GameClockStartButton from './GameClockStartButton';
-
+import ms from 'pretty-ms';
 // const ms = require('pretty-ms')
 
 class GameClock extends Component {
@@ -14,11 +14,11 @@ class GameClock extends Component {
             isOn: false,
             start: 0
         }
-        this.startTimer = this.startTimer.bind(this)
-        this.stopTimer = this.stopTimer.bind(this)
-        this.resetTimer = this.resetTimer.bind(this)
+        // this.startTimer = this.startTimer.bind(this)
+        // this.stopTimer = this.stopTimer.bind(this)
+        // this.resetTimer = this.resetTimer.bind(this)
     }
-    startTimer() {
+    startTimer = () => {
         this.setState({
             isOn: true,
             time: this.state.time,
@@ -28,11 +28,11 @@ class GameClock extends Component {
             time: Date.now() - this.state.start
         }), 1);
     }
-    stopTimer() {
+    stopTimer = () => {
         this.setState({ isOn: false })
         clearInterval(this.timer)
     }
-    resetTimer() {
+    resetTimer = () => {
         this.setState({ time: 0, isOn: false })
     }
     render() {
@@ -50,7 +50,7 @@ class GameClock extends Component {
             <button onClick={this.resetTimer}>reset</button>
         return (
             <div>
-                <h3>timer: {(this.state.time)}</h3>
+                <h3>timer: {ms(this.state.time)}</h3>
                 {start}
                 {resume}
                 {stop}
