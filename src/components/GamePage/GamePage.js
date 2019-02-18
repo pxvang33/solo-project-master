@@ -6,7 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import GamePageClock from './GamePageClock';
+import GameClock from './GameClock/GameClock';
 
 const styles = {
     card: {
@@ -92,7 +92,7 @@ class GamePage extends Component {
                     </table>
                 </div>
                 <div>
-                    <GamePageClock />
+                    <GameClock />
                 </div>
                 <br />
                 <br />

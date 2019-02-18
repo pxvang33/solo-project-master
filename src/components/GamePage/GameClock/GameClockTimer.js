@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// const ms = require('pretty-ms')
 
-class GamePageClock extends Component {
+class GameClockTimer extends Component {
+
     render() {
-        return(
+        return (
             <div>
-                <h2>Clock:</h2>
+                <h2>Clock: </h2>
+
             </div>
         )
     }
-
 }
-
 const mapStateToProps = reduxStore => ({
     reduxStore
 });
-export default connect(mapStateToProps)(GamePageClock);
+export default connect(mapStateToProps)(GameClockTimer);
