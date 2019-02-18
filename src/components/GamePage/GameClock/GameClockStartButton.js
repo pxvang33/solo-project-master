@@ -8,7 +8,7 @@ class GameClockStartButton extends Component {
     render() {
         return (
             <div>
-
+                <button>Start</button>
             </div>
         )
     }

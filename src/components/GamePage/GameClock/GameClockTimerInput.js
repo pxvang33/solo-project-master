@@ -9,7 +9,7 @@ class GameClockTimerInput extends Component {
         return (
             <div>
                 <h3>Input your desired time</h3>
-                <input type="number"  />
+                <input type="number" minutes={this.props.minutes} changeTime={this.props.changeTime} ></input>
             </div>
         );
     }

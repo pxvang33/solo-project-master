@@ -8,7 +8,7 @@ class GameClockTimer extends Component {
     render() {
         return (
             <div>
-                <h2>Clock: </h2>
+                <h2>Clock: {this.props.minutes}:{this.props.seconds} </h2>
 
             </div>
         )
