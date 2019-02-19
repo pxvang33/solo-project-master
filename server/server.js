@@ -12,6 +12,8 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const playerRouter = require('./routes/player.router');
 const boxscoreRouter = require('./routes/boxscore.router');
+const practiceBoxscoreRouter = require('./routes/practiceboxscore.router');
+
 
 
 // Body parser middleware
@@ -29,7 +31,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/player', playerRouter);
 app.use('/api/boxscore', boxscoreRouter);
-
+app.use('/api/boxscore/practice', practiceBoxscoreRouter);
 // Serve static files
 app.use(express.static('build'));
 

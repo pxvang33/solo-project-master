@@ -53,7 +53,15 @@ const boxscoreHistory = (state = [], action) => {
     }
     return state;
 }
+
+const practiceBoxscoreHistory = (state = [], action) => {
+    if (action.type === 'SET_PRACTICE_BOXSCORE_HISTORY') {
+        return action.payload
+    }
+    return state;
+}
 export default combineReducers({
     game_mode,
-    boxscoreHistory
+    boxscoreHistory,
+    practiceBoxscoreHistory
 });

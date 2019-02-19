@@ -4,6 +4,8 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import playerSaga from './playerSaga';
 import boxscoreSaga from './boxscoreSaga';
+import practiceBoxscoreSaga from './practiceBoxscoreSaga';
+
 
 
 // rootSaga is the primary saga.
@@ -19,6 +21,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     playerSaga(),
-    boxscoreSaga()
+    boxscoreSaga(),
+    practiceBoxscoreSaga()
   ]);
 }

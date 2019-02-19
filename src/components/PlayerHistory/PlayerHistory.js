@@ -33,13 +33,17 @@ class PlayerHistory extends Component {
 
     componentDidMount() {
         this.getBoxscore();
+        this.getPracticeBoxscore();
     }
 
     getBoxscore = () => {
         let action = { type: 'FETCH_BOXSCORE_HISTORY' }
         this.props.dispatch(action)
     }
-
+    getPracticeBoxscore = () => {
+        let action = { type: 'FETCH_PRACTICE_BOXSCORE_HISTORY' }
+        this.props.dispatch(action)
+    }
     deleteBoxscore = (id) => {
         const action = { type: 'DELETE_BOXSCORE', payload: id }
         this.props.dispatch(action);
@@ -51,6 +55,26 @@ class PlayerHistory extends Component {
         const { classes } = this.props;
         const { value } = this.state;
         
+        // let liveGameHistory = this.props.reduxStore.boxscore.boxscoreHistory;
+        // let show;
+        // liveGameHistory.map((boxscore) =>{
+        //     if( boxscore.game_mode === 'live_game') {
+        //         show = <tr key={boxscore.id} >
+        //             <td><button onClick={() => { this.deleteBoxscore(boxscore.id) }}>delete</button>
+        //                 <button onClick={() => { this.updateBoxscore(boxscore.id) }}>edit</button></td>
+        //             <td>{boxscore.date}</td>
+        //             <td>{boxscore.player_name}</td>
+        //             <td>{boxscore.FGM}</td>
+        //             <td>{boxscore.FGA}</td>
+        //             <td>{boxscore.THREEPM}</td>
+        //             <td>{boxscore.THREEPA}</td>
+        //             <td>{boxscore.REB}</td>
+        //             <td>{boxscore.AST}</td>
+        //             <td>{boxscore.TO}</td>
+        //             <td>{boxscore.PTS}</td>
+        //         </tr>
+        //     }
+        // })
         return (
             <div>
                 {JSON.stringify(this.props)}
@@ -82,6 +106,7 @@ class PlayerHistory extends Component {
                             </thead>
                             <tbody>
                                 {/* plants go here */}
+                                {/* {show} */}
                                 {this.props.reduxStore.boxscore.boxscoreHistory.map((boxscore) => {
                                     return(
                                         <tr key={boxscore.id} >
@@ -102,7 +127,46 @@ class PlayerHistory extends Component {
                             </tbody>
                         </table>
                         </TabContainer>}
-                    {value === 1 && <TabContainer>Item Two</TabContainer>}
+                    {value === 1 && <TabContainer>Item Two
+                                                <table className="garden">
+                            <thead>
+                                <tr>
+                                    <th>Edit</th>
+                                    <th>Date</th>
+                                    <th>Player Name</th>
+                                    <th>FGM</th>
+                                    <th>FGA</th>
+                                    <th>3PM</th>
+                                    <th>3PA</th>
+                                    <th>REB</th>
+                                    <th>AST</th>
+                                    <th>TO</th>
+                                    <th>PTS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* plants go here */}
+                                {/* {show} */}
+                                {this.props.reduxStore.boxscore.practiceBoxscoreHistory.map((practiceBoxscore) => {
+                                    return (
+                                        <tr key={practiceBoxscore.id} >
+                                            <td><button onClick={() => { this.deleteBoxscore(practiceBoxscore.id) }}>delete</button>
+                                                <button onClick={() => { this.updateBoxscore(practiceBoxscore.id) }}>edit</button></td>
+                                            <td>{practiceBoxscore.date}</td>
+                                            <td>{practiceBoxscore.player_name}</td>
+                                            <td>{practiceBoxscore.FGM}</td>
+                                            <td>{practiceBoxscore.FGA}</td>
+                                            <td>{practiceBoxscore.THREEPM}</td>
+                                            <td>{practiceBoxscore.THREEPA}</td>
+                                            <td>{practiceBoxscore.REB}</td>
+                                            <td>{practiceBoxscore.AST}</td>
+                                            <td>{practiceBoxscore.TO}</td>
+                                            <td>{practiceBoxscore.PTS}</td>
+                                        </tr>)
+                                })}
+                            </tbody>
+                        </table>
+                    </TabContainer>}
                     {/* {value === 2 && <TabContainer>Item Three</TabContainer>} */}
                 </div>
             </div>

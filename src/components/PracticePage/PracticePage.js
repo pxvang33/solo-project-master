@@ -37,19 +37,6 @@ class PracticePage extends Component {
         let action = { type: 'THREE_POINT_MISS' };
         this.props.dispatch(action)
     }
-    addRebound = () => {
-        let action = { type: 'ADD_REBOUND' };
-        this.props.dispatch(action)
-    }
-
-    addAssist = () => {
-        let action = { type: 'ADD_ASSIST' };
-        this.props.dispatch(action)
-    }
-    addTurnover = () => {
-        let action = { type: 'ADD_TURNOVER' };
-        this.props.dispatch(action)
-    }
     addBoxscore = () => {
         let boxscoreFromReduxStore = this.props.reduxStore.boxscore.game_mode
         let action = { type: 'ADD_BOXSCORE', payload: boxscoreFromReduxStore }

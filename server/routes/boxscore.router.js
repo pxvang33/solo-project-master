@@ -24,11 +24,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.get('/', rejectUnauthenticated, (req, res) => {
     // const queryText = (` SELECT * FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
     const queryText = (`SELECT "box_score".*, "player"."player_name" FROM "box_score" 
-    JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "player"."person_id" = $1;`)
-    // WHERE "player"."id" = $1
+    JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "box_score"."game_mode" = 'live_game';`)
+    // "player"."person_id" = $1
 
-    pool.query(queryText, [req.user.id])
-    // [req.body.player_id]
+    pool.query(queryText)
+    // [req.user.id]
         .then((result) => {
             res.send(result.rows);
         }).catch((error) => {
