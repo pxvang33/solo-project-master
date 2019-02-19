@@ -77,6 +77,8 @@ class UserPage extends Component {
       }
       let action = { type: 'UPDATE_BOXSCORE', payload: boxscoreInfo }
       this.props.dispatch(action);
+      this.props.history.push('/practice');
+
       console.log('in action.payload', action.payload);
     }
 
