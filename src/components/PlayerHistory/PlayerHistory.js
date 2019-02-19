@@ -58,30 +58,10 @@ class PlayerHistory extends Component {
     render() {
         const { classes } = this.props;
         const { value } = this.state;
-        
-        // let liveGameHistory = this.props.reduxStore.boxscore.boxscoreHistory;
-        // let show;
-        // liveGameHistory.map((boxscore) =>{
-        //     if( boxscore.game_mode === 'live_game') {
-        //         show = <tr key={boxscore.id} >
-        //             <td><button onClick={() => { this.deleteBoxscore(boxscore.id) }}>delete</button>
-        //                 <button onClick={() => { this.updateBoxscore(boxscore.id) }}>edit</button></td>
-        //             <td>{boxscore.date}</td>
-        //             <td>{boxscore.player_name}</td>
-        //             <td>{boxscore.FGM}</td>
-        //             <td>{boxscore.FGA}</td>
-        //             <td>{boxscore.THREEPM}</td>
-        //             <td>{boxscore.THREEPA}</td>
-        //             <td>{boxscore.REB}</td>
-        //             <td>{boxscore.AST}</td>
-        //             <td>{boxscore.TO}</td>
-        //             <td>{boxscore.PTS}</td>
-        //         </tr>
-        //     }
-        // })
+
         return (
             <div>
-                {JSON.stringify(this.props)}
+                {/* {JSON.stringify(this.props)} */}
                 <h2>Player History</h2>
                 <div className={classes.root}>
                     <AppBar position="static">

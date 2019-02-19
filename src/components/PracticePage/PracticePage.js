@@ -41,6 +41,7 @@ class PracticePage extends Component {
         let boxscoreFromReduxStore = this.props.reduxStore.boxscore.game_mode
         let action = { type: 'ADD_BOXSCORE', payload: boxscoreFromReduxStore }
         this.props.dispatch(action);
+        this.props.history.push('/home');
     }
     render() {
         const { classes } = this.props;

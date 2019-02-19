@@ -21,6 +21,8 @@ function* addBoxscore(action) {
         yield axios.post('/api/boxscore', action.payload);
         const newAction = { type: 'FETCH_BOXSCORE_HISTORY' };
         yield put(newAction);
+        const clearAction = { type: 'CLEAR_BOXSCORE'};
+        yield put (clearAction)
     } catch (error) {
         console.log('error in addBoxscore saga', error);
     }
