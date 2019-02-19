@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* boxscoreSaga() {
     yield takeLatest('FETCH_PRACTICE_BOXSCORE_HISTORY', fetchPracticeBoxscoreHistory)
-    // yield takeLatest('DELETE_BOXSCORE', deleteBoxscore)
+    yield takeLatest('DELETE_PRACTICE_BOXSCORE', deletePracticeBoxscore)
 
 }
 function* fetchPracticeBoxscoreHistory() {
@@ -16,17 +16,17 @@ function* fetchPracticeBoxscoreHistory() {
     }
 }
 
-// function* deleteBoxscore(action) {
-//     let boxscore = action.payload;
-//     console.log('in fetchPracticeBoxscoreHistory delete boxscore', boxscore);
-//     try {
-//         yield axios.delete(`/api/boxscore/practice/${boxscore}`);
-//         let nextAction = { type: 'FETCH_PRACTICE_BOXSCORE_HISTORY' };
-//         yield put(nextAction);
-//     } catch (error) {
-//         console.log('in fetchPracticeBoxscoreHistory delete error', error);
-//     }
-// }
+function* deletePracticeBoxscore(action) {
+    let boxscore = action.payload;
+    console.log('in fetchPracticeBoxscoreHistory delete boxscore', boxscore);
+    try {
+        yield axios.delete(`/api/boxscore/practice/${boxscore}`);
+        let nextAction = { type: 'FETCH_PRACTICE_BOXSCORE_HISTORY' };
+        yield put(nextAction);
+    } catch (error) {
+        console.log('in fetchPracticeBoxscoreHistory delete error', error);
+    }
+}
 
 
 export default boxscoreSaga;

@@ -48,6 +48,10 @@ class PlayerHistory extends Component {
         const action = { type: 'DELETE_BOXSCORE', payload: id }
         this.props.dispatch(action);
     }
+    deletePracticeBoxscore = (id) => {
+        const action = { type: 'DELETE_PRACTICE_BOXSCORE', payload: id }
+        this.props.dispatch(action);
+    }
     updateBoxscore = (id) => {
 
     }
@@ -150,8 +154,8 @@ class PlayerHistory extends Component {
                                 {this.props.reduxStore.boxscore.practiceBoxscoreHistory.map((practiceBoxscore) => {
                                     return (
                                         <tr key={practiceBoxscore.id} >
-                                            <td><button onClick={() => { this.deleteBoxscore(practiceBoxscore.id) }}>delete</button>
-                                                <button onClick={() => { this.updateBoxscore(practiceBoxscore.id) }}>edit</button></td>
+                                            <td><button onClick={() => { this.deletePracticeBoxscore(practiceBoxscore.id) }}>delete</button>
+                                                <button onClick={() => { this.updatePracticeBoxscore(practiceBoxscore.id) }}>edit</button></td>
                                             <td>{practiceBoxscore.date}</td>
                                             <td>{practiceBoxscore.player_name}</td>
                                             <td>{practiceBoxscore.FGM}</td>
