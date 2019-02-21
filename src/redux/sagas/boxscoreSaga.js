@@ -30,13 +30,13 @@ function* fetchBoxscoreHistory() {
 // }
 function* updateLiveGameBoxscore(action) {
     let boxscore = action.payload.id;
-    console.log('in UPDATE boxscore', boxscore);
+    console.log('in UPDATE put boxscore', boxscore);
     try {
-        yield axios.delete(`/api/boxscore/${boxscore}`);
+        yield axios.put(`/api/boxscore/${boxscore}`, action.payload);
         // let nextAction = { type: 'FETCH_BOXSCORE_HISTORY' };
         // yield put(nextAction);
     } catch (error) {
-        console.log('in delete error', error);
+        console.log('in put error', error);
     }
 }
 
