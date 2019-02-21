@@ -18,7 +18,9 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import GamePage from '../GamePage/GamePage';
 import PlayerHistory from '../PlayerHistory/PlayerHistory';
+import PlayerHistoryDetail from '../PlayerHistory/PlayerHistoryDetail';
 import PracticePage from '../PracticePage/PracticePage';
+
 
 
 import './App.css';
@@ -71,9 +73,15 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
+              path="/playerhistory/edit"
+              component={PlayerHistoryDetail}
+            />
+            <ProtectedRoute
+              exact
               path="/practice"
               component={PracticePage}
             />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

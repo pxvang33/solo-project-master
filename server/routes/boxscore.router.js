@@ -24,7 +24,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.get('/', rejectUnauthenticated, (req, res) => {
     // const queryText = (` SELECT * FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
     const queryText = (`SELECT "box_score".*, "player"."player_name" FROM "box_score" 
-    JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "box_score"."game_mode" = 'live_game' AND "player"."person_id" = $1;`)
+    JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "box_score"."game_mode" = 'live_game' 
+    AND "player"."person_id" = $1;`)
     // "player"."person_id" = $1
 
     pool.query(queryText, [req.user.id])
@@ -35,6 +36,22 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             console.log('in GET api/boxscore error', error);
         })
 })
+
+// router.get('/:id', rejectUnauthenticated, (req, res) => {
+//     // const queryText = (` SELECT * FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
+//     const queryText = (`SELECT "box_score".*, "player"."player_name" FROM "box_score" 
+//     JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "box_score"."game_mode" = 'live_game' 
+//     AND "box_score"."id" =$1 AND "player"."person_id" = $2;`)
+//     // "player"."person_id" = $1
+
+//     pool.query(queryText, [req.params.id, req.user.id])
+//         // [req.user.id]
+//         .then((result) => {
+//             res.send(result.rows);
+//         }).catch((error) => {
+//             console.log('in GET api/boxscore playerhistorydetail error', error);
+//         })
+// })
 
 router.delete('/:id', rejectUnauthenticated, (req, res) =>{
     const boxscore = req.params

@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
 const styles = theme => ({
     root: {
@@ -52,8 +53,13 @@ class PlayerHistory extends Component {
         const action = { type: 'DELETE_PRACTICE_BOXSCORE', payload: id }
         this.props.dispatch(action);
     }
-    updateBoxscore = (id) => {
-
+    getUpdateLiveGameBoxscore = (boxscore) => {
+        // set edit player reducer rather than going to saga, will pass entire object
+        console.log('in getupdatelivegameboxscore', boxscore);
+        
+        const action = { type: 'SET_EDIT_LIVE_GAME_BOXSCORE_HISTORY', payload: boxscore}
+        this.props.dispatch(action)
+        this.props.history.push(`/playerhistory/edit`)
     }
     render() {
         const { classes } = this.props;
@@ -95,8 +101,8 @@ class PlayerHistory extends Component {
                                     return(
                                         <tr key={boxscore.id} >
                                             <td><button onClick ={ () => {this.deleteBoxscore(boxscore.id)} }>delete</button>
-                                            <button onClick = { () => {this.updateBoxscore(boxscore.id)} }>edit</button></td>
-                                            <td>{boxscore.date}</td>
+                                                <button onClick={ () => {this.getUpdateLiveGameBoxscore(boxscore)} }>edit</button></td>
+                                            <td>{moment(boxscore.date).format('L')}</td>
                                             <td>{boxscore.player_name}</td>
                                             <td>{boxscore.FGM}</td>
                                             <td>{boxscore.FGA}</td>
