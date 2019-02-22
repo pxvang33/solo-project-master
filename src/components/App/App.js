@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import GamePage from '../GamePage/GamePage';
 import PlayerHistory from '../PlayerHistory/PlayerHistory';
 import PlayerHistoryDetail from '../PlayerHistory/PlayerHistoryDetail';
+import PracticePlayerHistoryDetail from '../PlayerHistory/PracticePlayerHistoryDetail';
 import PracticePage from '../PracticePage/PracticePage';
 
 
@@ -75,6 +76,11 @@ class App extends Component {
               exact
               path="/playerhistory/edit"
               component={PlayerHistoryDetail}
+            />
+            <ProtectedRoute
+              exact
+              path="/playerhistory/practice/edit"
+              component={PracticePlayerHistoryDetail}
             />
             <ProtectedRoute
               exact

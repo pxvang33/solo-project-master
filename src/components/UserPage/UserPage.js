@@ -79,6 +79,8 @@ class UserPage extends Component {
         player_id: parseInt(this.state.newPlayer.player_id),
         game_mode: event.target.value
       }
+      let clearBoxscore = { type: 'CLEAR_BOXSCORE' }
+      this.props.dispatch(clearBoxscore);
       let action = { type: 'UPDATE_BOXSCORE', payload: boxscoreInfo }
       this.props.dispatch(action);
       this.props.history.push('/practice');

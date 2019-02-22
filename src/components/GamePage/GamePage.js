@@ -19,6 +19,14 @@ const styles = {
 
 
 class GamePage extends Component {
+
+    // componentDidMount() {
+    //     this.clearBoxscore();
+    // }
+    // clearBoxscore = () => {
+    //     let action = { type: 'CLEAR_BOXSCORE' }
+    //     this.props.dispatch(action);
+    // }
     twoPointMake = () => {
         let action = {type: 'TWO_POINT_MAKE'};
         this.props.dispatch(action)

@@ -11,6 +11,7 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        color: (18, 0, 100),
     },
 });
 
@@ -60,6 +61,14 @@ class PlayerHistory extends Component {
         const action = { type: 'SET_EDIT_LIVE_GAME_BOXSCORE_HISTORY', payload: boxscore}
         this.props.dispatch(action)
         this.props.history.push(`/playerhistory/edit`)
+    }
+    getUpdatePracticeBoxscore = (boxscore) => {
+        // set edit player reducer rather than going to saga, will pass entire object
+        console.log('in SET_EDIT_PRACTICE_BOXSCORE_HISTORY', boxscore);
+
+        const action = { type: 'SET_EDIT_PRACTICE_BOXSCORE_HISTORY', payload: boxscore }
+        this.props.dispatch(action)
+        this.props.history.push(`/playerhistory/practice/edit`)
     }
     render() {
         const { classes } = this.props;
@@ -117,7 +126,7 @@ class PlayerHistory extends Component {
                             </tbody>
                         </table>
                         </TabContainer>}
-                    {value === 1 && <TabContainer>Item Two
+                    {value === 1 && <TabContainer>
                                                 <table className="garden">
                             <thead>
                                 <tr>
@@ -141,7 +150,7 @@ class PlayerHistory extends Component {
                                     return (
                                         <tr key={practiceBoxscore.id} >
                                             <td><button onClick={() => { this.deletePracticeBoxscore(practiceBoxscore.id) }}>delete</button>
-                                                <button onClick={() => { this.updatePracticeBoxscore(practiceBoxscore.id) }}>edit</button></td>
+                                                <button onClick={() => { this.getUpdatePracticeBoxscore(practiceBoxscore) }}>edit</button></td>
                                             <td>{moment(practiceBoxscore.date).format('L')}</td>
                                             <td>{practiceBoxscore.player_name}</td>
                                             <td>{practiceBoxscore.FGM}</td>

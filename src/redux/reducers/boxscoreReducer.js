@@ -13,40 +13,49 @@ let boxscore = {
     game_mode: null,
     player_id: null
 };
-
+// change boxscore.FGA etc... to state.FGA
 const game_mode = (state = boxscore, action) => {
     if (action.type === 'UPDATE_BOXSCORE') {
         return { ...state, playerName: action.payload.playerName, game_mode: action.payload.game_mode, player_id: action.payload.player_id}
     }
     else if (action.type === 'TWO_POINT_MAKE') {
-        return { ...state, FGA: boxscore.FGA += 1, FGM: boxscore.FGM += 1, PTS: boxscore.PTS += 2}
+        return { ...state, FGA: state.FGA + 1, FGM: state.FGM + 1, PTS: state.PTS + 2}
     } 
     else if (action.type === 'TWO_POINT_MISS') {
-        return { ...state, FGA: boxscore.FGA += 1,}
+        return { ...state, FGA: state.FGA + 1,}
     }
     else if (action.type === 'THREE_POINT_MAKE') {
-        return { ...state, FGA: boxscore.FGA += 1, FGM: boxscore.FGM += 1, 
-            THREEPA: boxscore.THREEPA += 1, THREEPM: boxscore.THREEPM += 1, PTS: boxscore.PTS += 3 }
+        return {
+            ...state, FGA: state.FGA + 1, FGM: state.FGM + 1, 
+            THREEPA: state.THREEPA + 1, THREEPM: state.THREEPM + 1, PTS: state.PTS + 3 }
     }
     else if (action.type === 'THREE_POINT_MISS') {
-        return { ...state, FGA: boxscore.FGA += 1, 
-             THREEPA: boxscore.THREEPA += 1}
+        return {
+            ...state, FGA: state.FGA + 1, 
+            THREEPA: state.THREEPA + 1}
     }
     else if (action.type === 'ADD_REBOUND') {
-        return { ...state, REB: boxscore.REB += 1, }
+        return { ...state, REB: state.REB + 1, }
     }
     else if (action.type === 'ADD_ASSIST') {
-        return { ...state, AST: boxscore.AST += 1, }
+        return { ...state, AST: state.AST + 1, }
     }
     else if (action.type === 'ADD_TURNOVER') {
-        return { ...state, TO: boxscore.TO += 1, }
+        return { ...state, TO: state.TO + 1, }
     }
     else if (action.type === 'CLEAR_BOXSCORE'){
+        console.log('IN CLEAR BOXSCORE');
+        
         return boxscore
     }
     return state;
 }
-
+// const clearBoxscore = (state = [], action) => {
+//     if (action.type === 'CLEAR_BOXSCORE') {
+//         return boxscore 
+//     }
+//     return state;
+// }
 const boxscoreHistory = (state = [], action) => {
     if (action.type === 'SET_BOXSCORE_HISTORY') {
         return action.payload
@@ -65,9 +74,18 @@ const practiceBoxscoreHistory = (state = [], action) => {
     }
     return state;
 }
+const editPracticeBoxscoreHistory = (state = [], action) => {
+    if (action.type === 'SET_EDIT_PRACTICE_BOXSCORE_HISTORY') {
+        return action.payload
+    }
+    return state; 
+}
 export default combineReducers({
     game_mode,
     boxscoreHistory,
     practiceBoxscoreHistory,
-    editLiveGameBoxscoreHistory
+    editLiveGameBoxscoreHistory,
+    editPracticeBoxscoreHistory,
+    // clearBoxscore
+    
 });

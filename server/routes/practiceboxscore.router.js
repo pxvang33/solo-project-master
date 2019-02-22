@@ -19,7 +19,22 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             console.log('in GET api/boxscore error', error);
         })
 })
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('in put route req.body', req.body);
 
+    const boxscore = req.body
+    const queryText = `UPDATE "box_score" SET "FGA"=$1, "FGM"=$2, "THREEPA"=$3, "THREEPM"=$4,
+    "REB"=$5, "AST"=$6, "TO"=$7, "PTS"=$8 WHERE id= $9`;
+    pool.query(queryText, [boxscore.FGA, boxscore.FGM, boxscore.THREEPA, boxscore.THREEPM,
+    boxscore.REB, boxscore.AST, boxscore.TO, boxscore.PTS, req.params.id])
+        .then((responseFromDatabase) => {
+            console.log('in put PRACTICE ROUTER responseFromdatabase', responseFromDatabase);
+            res.sendStatus(200);
+        }).catch((error) => {
+            console.log('Error completing put PRACTICE boxscore query', error);
+            res.sendStatus(500);
+        });
+})
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const boxscore = req.params
     const queryText = `DELETE FROM "box_score" WHERE id=$1;`;
