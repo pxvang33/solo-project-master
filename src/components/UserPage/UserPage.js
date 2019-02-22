@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 // import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+    width: 500,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 class UserPage extends Component {
   constructor(props) {
@@ -90,17 +103,20 @@ class UserPage extends Component {
 
   }
   render() {
-
+    const { classes } = this.props;
     return (
       <div>
-        {JSON.stringify(this.props.reduxStore.player)}
+        {/* {JSON.stringify(this.props.reduxStore.player)} */}
 
         <h1 id="welcome">
           Welcome, {this.props.reduxStore.user.username}!
         </h1>
-        {JSON.stringify(this.state)}
+        {/* {JSON.stringify(this.state)} */}
 
         <input onChange={this.playerNameChange} placeholder="Add Player" />
+        <Button variant="contained" size="small"  className={classes.button}>
+          Add Player
+      </Button>
         <button onClick={this.addPlayer}>Add Player</button>
         <br />
 
@@ -131,4 +147,4 @@ const mapStateToProps = reduxStore => ({
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(withStyles(styles)(UserPage));

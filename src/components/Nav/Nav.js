@@ -8,8 +8,8 @@ const Nav = (props) => (
   <div className="nav">
   
     <Link to="/home">
-      <button>Back</button>
-      {/* <h2 className="nav-title">Check the Ball</h2> */}
+      {/* <button>Back</button> */}
+      <h2 className="nav-title">Check the Ball</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
