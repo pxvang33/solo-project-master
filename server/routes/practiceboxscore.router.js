@@ -7,7 +7,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 router.get('/', rejectUnauthenticated, (req, res) => {
     // const queryText = (` SELECT * FROM "player" JOIN "person" ON "person"."id" = "player"."person_id";`)
     const queryText = (`SELECT "box_score".*, "player"."player_name" FROM "box_score" 
-    JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "box_score"."game_mode" = 'practice' AND "player"."person_id" = $1;`)
+    JOIN "player" ON "player"."id" = "box_score"."player_id" WHERE "box_score"."game_mode" = 'practice' 
+    AND "player"."person_id" = $1 ORDER BY "id" DESC;`)
     // "player"."person_id" = $1
 
     pool.query(queryText, [req.user.id])

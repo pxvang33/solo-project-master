@@ -40,6 +40,7 @@ class PlayerHistoryDetail extends Component {
             payload: this.state,
         }
         this.props.dispatch(action);
+        this.props.history.push('/playerhistory')
 
     }
     render() {

@@ -142,7 +142,7 @@ class PlayerHistory extends Component {
                                         <tr key={practiceBoxscore.id} >
                                             <td><button onClick={() => { this.deletePracticeBoxscore(practiceBoxscore.id) }}>delete</button>
                                                 <button onClick={() => { this.updatePracticeBoxscore(practiceBoxscore.id) }}>edit</button></td>
-                                            <td>{practiceBoxscore.date}</td>
+                                            <td>{moment(practiceBoxscore.date).format('L')}</td>
                                             <td>{practiceBoxscore.player_name}</td>
                                             <td>{practiceBoxscore.FGM}</td>
                                             <td>{practiceBoxscore.FGA}</td>

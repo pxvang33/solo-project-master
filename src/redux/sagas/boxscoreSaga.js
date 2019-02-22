@@ -33,8 +33,8 @@ function* updateLiveGameBoxscore(action) {
     console.log('in UPDATE put boxscore', boxscore);
     try {
         yield axios.put(`/api/boxscore/${boxscore}`, action.payload);
-        // let nextAction = { type: 'FETCH_BOXSCORE_HISTORY' };
-        // yield put(nextAction);
+        let nextAction = { type: 'FETCH_BOXSCORE_HISTORY' };
+        yield put(nextAction);
     } catch (error) {
         console.log('in put error', error);
     }
