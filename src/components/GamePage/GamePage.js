@@ -104,13 +104,11 @@ class GamePage extends Component {
                 <div>
                     <GameClock />
                 </div>
-                <br />
-                <br />
                 <div>
                         <Card className={classes.card}>
                             <CardContent>
                                 <Typography >
-                                2 point
+                                <b>2 point</b>
                                 </Typography>
                                 <CardActions>
                                     <Button  onClick={this.twoPointMake} variant="outlined" color="primary" className="make">
@@ -123,7 +121,7 @@ class GamePage extends Component {
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                3 point
+                                <b>3 point </b>
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.threePointMake} variant="outlined" color="primary" className="make">
@@ -136,7 +134,7 @@ class GamePage extends Component {
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                Rebound
+                                <b>Rebound</b>
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.addRebound} variant="outlined" color="primary" className="make">
@@ -147,7 +145,7 @@ class GamePage extends Component {
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                Assist/Turnover
+                                <b>Assist/Turnover</b>
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.addAssist} variant="outlined" color="primary" className="make">

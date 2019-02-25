@@ -47,7 +47,7 @@ class PlayerHistoryDetail extends Component {
         return (
             <div>
                 <h2> {this.props.reduxStore.boxscore.editLiveGameBoxscoreHistory.player_name} Player History Detail </h2>
-                {JSON.stringify(this.props.reduxStore.boxscore.editLiveGameBoxscoreHistory)}
+                {/* {JSON.stringify(this.props.reduxStore.boxscore.editLiveGameBoxscoreHistory)} */}
                 {/* {JSON.stringify(this.props.match.params.id)} */}
                 <form onSubmit={this.submit}>
                     <div>FGM

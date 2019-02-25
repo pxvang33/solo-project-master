@@ -7,6 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 // import GameClock from './GameClock/GameClock';
+import GameClock from '../GamePage/GameClock/GameClock';
 
 const styles = {
     card: {
@@ -74,7 +75,7 @@ class PracticePage extends Component {
                     </table>
                 </div>
                 <div>
-                    {/* <GameClock /> */}
+                    <GameClock />
                 </div>
                 <br />
                 <br />
@@ -82,7 +83,7 @@ class PracticePage extends Component {
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                2 point
+                                <b>2 point</b>
                                 </Typography>
                             <CardActions>
                                 <Button onClick={this.twoPointMake} variant="outlined" color="primary" className="make">
@@ -95,7 +96,7 @@ class PracticePage extends Component {
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography >
-                                3 point
+                                <b>3 point </b>
                             </Typography>
                             <CardActions>
                                 <Button onClick={this.threePointMake} variant="outlined" color="primary" className="make">
@@ -104,30 +105,6 @@ class PracticePage extends Component {
                                     Miss</Button>
                             </CardActions>
                         </CardContent>
-                    {/* </Card> */}
-                    {/* <Card className={classes.card}>
-                        <CardContent>
-                            <Typography >
-                                Rebound
-                            </Typography>
-                            <CardActions>
-                                <Button onClick={this.addRebound} variant="outlined" color="primary" className="make">
-                                    Rebound</Button>
-                            </CardActions>
-                        </CardContent> */}
-                    {/* </Card> */}
-                    {/* <Card className={classes.card}>
-                        <CardContent>
-                            <Typography >
-                                Assist/Turnover
-                            </Typography>
-                            <CardActions>
-                                <Button onClick={this.addAssist} variant="outlined" color="primary" className="make">
-                                    Assist</Button>
-                                <Button onClick={this.addTurnover} variant="outlined" color="primary" className="miss">
-                                    Turnover</Button>
-                            </CardActions>
-                        </CardContent> */}
                     </Card>
                     <br />
 

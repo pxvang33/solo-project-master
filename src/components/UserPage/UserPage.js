@@ -3,20 +3,23 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-// import { blue } from '@material-ui/core/colors';
+// import swal from 'sweetalert';
+import TextField from '@material-ui/core/TextField';
 import blue from '@material-ui/core/colors/blue';
+
 
 // import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
-    width: 500,
+    margin: 30,
+    width: 400,
+    alignContent: "center",
     color: theme.palette.getContrastText(blue[900]),
     backgroundColor: "#f3961d",
     '&:hover': {
@@ -24,7 +27,7 @@ const styles = theme => ({
     },
   },
   playerHistory: {
-    margin: theme.spacing.unit,
+    margin: 40,
     width: 350,
     color: theme.palette.getContrastText(blue[900]),
     backgroundColor: "#f3961d",
@@ -33,7 +36,8 @@ const styles = theme => ({
     },
   },
   game: {
-    margin: theme.spacing.unit,
+    margin: 40,
+    alignContent: 'center',
     width: 350,
     height: 100,
     color: theme.palette.getContrastText(blue[900]),
@@ -45,6 +49,10 @@ const styles = theme => ({
   input: {
     display: 'none',
   },
+  addPlayer: {
+    width: 300,
+    height: 50,
+  },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -52,6 +60,9 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 400,
+  },
+  textField: {
+    marginLeft: 40,
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -91,6 +102,7 @@ class UserPage extends Component {
     let playerToAdd = this.state.newPlayer;
     let action = { type: 'ADD_PLAYER_NAME', payload: playerToAdd };
     this.props.dispatch(action);
+    
   } // end addPlayer
 
   playerIdChange = (event) => {
@@ -150,15 +162,23 @@ class UserPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className = "user-page">
         {/* {JSON.stringify(this.props.reduxStore.player)} */}
 
-        <h1 id="welcome">
+        {/* <h1 id="welcome">
           Welcome, {this.props.reduxStore.user.username}!
-        </h1>
+        </h1> */}
         {/* {JSON.stringify(this.state)} */}
-
-        <input onChange={this.playerNameChange} placeholder="Add Player" />
+        <TextField
+          id="add-player"
+          label="Add Player"
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          onChange={this.playerNameChange}
+          className={classes.addPlayer}
+        />
+        {/* <input onChange={this.playerNameChange} placeholder="Add Player" /> */}
         <Button className="add-player" onClick={this.addPlayer} variant="contained" size="small" className={classes.button}>
           Add Player
       </Button>
@@ -177,7 +197,7 @@ class UserPage extends Component {
           >
             <option value="">Select player </option>
             {this.props.reduxStore.player.map((name, i) => {
-              return <option key={i} value={name.id} name={name.player_name}> {name.player_name} </option>
+              return <option key={i} value={name.id} name={name.player_name} > {name.player_name} </option>
             })}
           </Select>
         </FormControl>
