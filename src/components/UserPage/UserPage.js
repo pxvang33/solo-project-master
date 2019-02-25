@@ -23,6 +23,25 @@ const styles = theme => ({
       backgroundColor: "#120064",
     },
   },
+  playerHistory: {
+    margin: theme.spacing.unit,
+    width: 350,
+    color: theme.palette.getContrastText(blue[900]),
+    backgroundColor: "#f3961d",
+    '&:hover': {
+      backgroundColor: "#120064",
+    },
+  },
+  game: {
+    margin: theme.spacing.unit,
+    width: 350,
+    height: 100,
+    color: theme.palette.getContrastText(blue[900]),
+    backgroundColor: "#f3961d",
+    '&:hover': {
+      backgroundColor: "#120064",
+    },
+  },
   input: {
     display: 'none',
   },
@@ -57,7 +76,7 @@ class UserPage extends Component {
     this.props.dispatch({ type: 'FETCH_PLAYER' });
 
   }
-  
+
   playerNameChange = (event) => {
     this.setState({
       newPlayer: {
@@ -77,7 +96,7 @@ class UserPage extends Component {
   playerIdChange = (event) => {
     console.log('in playerIdchange', event.target.value);
     console.log('in playerIDChange name', event.target);
-    
+
     this.setState({
       newPlayer: {
         ...this.state.newPlayer,
@@ -109,7 +128,7 @@ class UserPage extends Component {
       this.props.dispatch(action);
       this.props.history.push('/livegame');
       console.log('in action.payload', action.payload);
-      
+
     } else if (event.target.value === 'practice') {
       let boxscoreInfo =
       {
@@ -140,10 +159,10 @@ class UserPage extends Component {
         {/* {JSON.stringify(this.state)} */}
 
         <input onChange={this.playerNameChange} placeholder="Add Player" />
-        <Button className="add-player" onClick={this.addPlayer} variant="contained" size="small"  className={classes.button}>
+        <Button className="add-player" onClick={this.addPlayer} variant="contained" size="small" className={classes.button}>
           Add Player
       </Button>
-        <button onClick={this.addPlayer}>Add Player</button>
+        {/* <button onClick={this.addPlayer}>Add Player</button> */}
         <br />
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-native-simple"></InputLabel>
@@ -151,10 +170,10 @@ class UserPage extends Component {
             native
             // value={this.state.newPlayer.playerName}
             onChange={this.playerIdChange}
-            // inputProps={{
-            //   name: 'age',
-            //   id: 'age-native-simple',
-            // }}
+          // inputProps={{
+          //   name: 'age',
+          //   id: 'age-native-simple',
+          // }}
           >
             <option value="">Select player </option>
             {this.props.reduxStore.player.map((name, i) => {
@@ -171,16 +190,16 @@ class UserPage extends Component {
         </select> */}
         <br />
         {/* <button onClick={this.submitGameMode} value="live_game">Live Game</button> */}
-        <Button onClick={this.submitGameMode} value="live_game" variant="contained" size="small" className={classes.button}>
+        <Button onClick={this.submitGameMode} value="live_game" variant="contained" size="small" className={classes.game}>
           Live Game
       </Button>
-        <Button onClick={this.submitGameMode} value="practice" variant="contained" size="small" className={classes.button}>
+        <Button onClick={this.submitGameMode} value="practice" variant="contained" size="small" className={classes.game}>
           Practice
       </Button>
         {/* <button onClick={this.submitGameMode} value="practice">Practice</button> */}
         <br />
         <br />
-        <Button onClick={this.viewHistory} value="player_history" variant="contained" size="small" className={classes.button}>
+        <Button onClick={this.viewHistory} value="player_history" variant="contained" size="small" className={classes.playerHistory}>
           Player History
       </Button>
         {/* <button onClick={this.viewHistory} value="player_history">Player History</button> */}
