@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+// import { blue } from '@material-ui/core/colors';
+import blue from '@material-ui/core/colors/blue';
 
 // import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
@@ -10,9 +17,25 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     width: 500,
+    color: theme.palette.getContrastText(blue[900]),
+    backgroundColor: "#f3961d",
+    '&:hover': {
+      backgroundColor: "#120064",
+    },
   },
   input: {
     display: 'none',
+  },
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 400,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
   },
 });
 
@@ -32,8 +55,9 @@ class UserPage extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_PLAYER' });
-  }
 
+  }
+  
   playerNameChange = (event) => {
     this.setState({
       newPlayer: {
@@ -52,6 +76,8 @@ class UserPage extends Component {
 
   playerIdChange = (event) => {
     console.log('in playerIdchange', event.target.value);
+    console.log('in playerIDChange name', event.target);
+    
     this.setState({
       newPlayer: {
         ...this.state.newPlayer,
@@ -114,24 +140,50 @@ class UserPage extends Component {
         {/* {JSON.stringify(this.state)} */}
 
         <input onChange={this.playerNameChange} placeholder="Add Player" />
-        <Button variant="contained" size="small"  className={classes.button}>
+        <Button className="add-player" onClick={this.addPlayer} variant="contained" size="small"  className={classes.button}>
           Add Player
       </Button>
         <button onClick={this.addPlayer}>Add Player</button>
         <br />
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="age-native-simple"></InputLabel>
+          <Select
+            native
+            // value={this.state.newPlayer.playerName}
+            onChange={this.playerIdChange}
+            // inputProps={{
+            //   name: 'age',
+            //   id: 'age-native-simple',
+            // }}
+          >
+            <option value="">Select player </option>
+            {this.props.reduxStore.player.map((name, i) => {
+              return <option key={i} value={name.id} name={name.player_name}> {name.player_name} </option>
+            })}
+          </Select>
+        </FormControl>
 
-        <select onChange={this.playerIdChange} >
+        {/* <select onChange={this.playerIdChange} className="select-player">
           <option value="">Select player </option>
           {this.props.reduxStore.player.map((name, i) => {
             return <option key={i} value={name.id} name={name.player_name}> {name.player_name} </option>
           })}
-        </select>
+        </select> */}
         <br />
-        <button onClick={this.submitGameMode} value="live_game">Live Game</button>
-        <button onClick={this.submitGameMode} value="practice">Practice</button>
+        {/* <button onClick={this.submitGameMode} value="live_game">Live Game</button> */}
+        <Button onClick={this.submitGameMode} value="live_game" variant="contained" size="small" className={classes.button}>
+          Live Game
+      </Button>
+        <Button onClick={this.submitGameMode} value="practice" variant="contained" size="small" className={classes.button}>
+          Practice
+      </Button>
+        {/* <button onClick={this.submitGameMode} value="practice">Practice</button> */}
         <br />
         <br />
-        <button onClick={this.viewHistory} value="player_history">Player History</button>
+        <Button onClick={this.viewHistory} value="player_history" variant="contained" size="small" className={classes.button}>
+          Player History
+      </Button>
+        {/* <button onClick={this.viewHistory} value="player_history">Player History</button> */}
 
       </div>
     ) // end return
