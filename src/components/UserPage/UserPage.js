@@ -18,7 +18,7 @@ import blue from '@material-ui/core/colors/blue';
 const styles = theme => ({
   button: {
     margin: 30,
-    width: 400,
+    width: 350,
     alignContent: "center",
     color: theme.palette.getContrastText(blue[900]),
     backgroundColor: "#f3961d",
@@ -174,6 +174,7 @@ class UserPage extends Component {
           label="Add Player"
           className={classes.textField}
           margin="normal"
+          display='center'
           variant="outlined"
           onChange={this.playerNameChange}
           className={classes.addPlayer}
@@ -223,7 +224,6 @@ class UserPage extends Component {
           Player History
       </Button>
         {/* <button onClick={this.viewHistory} value="player_history">Player History</button> */}
-
       </div>
     ) // end return
   } // ends render
