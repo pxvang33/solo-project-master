@@ -48,11 +48,11 @@ If you would like to name your database something else, you will need to change 
 
 To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+![Home Screen](documentation/images/home.png)
 
 Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+![Game Page](documentation/images/game.png)
 
 
 ## Production Build
