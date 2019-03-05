@@ -125,13 +125,13 @@ class UserPage extends Component {
     console.log('submitgamemode works');
     // Either pass player as a route param OR store in redux, constatnly update redux store to show 
     // up to date stats
-    if (event.target.value === 'live_game') {
+    if (event === 'live_game') {
       let boxscoreInfo =
       {
         playerName: this.state.newPlayer.playerName,
         person_id: this.props.reduxStore.user.id,
         player_id: parseInt(this.state.newPlayer.player_id),
-        game_mode: event.target.value
+        game_mode: event
       }
       // declare action and have another dispatch
       let clearBoxscore = { type: 'CLEAR_BOXSCORE' }
@@ -141,13 +141,13 @@ class UserPage extends Component {
       this.props.history.push('/livegame');
       console.log('in action.payload', action.payload);
 
-    } else if (event.target.value === 'practice') {
+    } else if (event === 'practice') {
       let boxscoreInfo =
       {
         playerName: this.state.newPlayer.playerName,
         person_id: this.props.reduxStore.user.id,
         player_id: parseInt(this.state.newPlayer.player_id),
-        game_mode: event.target.value
+        game_mode: event
       }
       let clearBoxscore = { type: 'CLEAR_BOXSCORE' }
       this.props.dispatch(clearBoxscore);
@@ -211,10 +211,10 @@ class UserPage extends Component {
         </select> */}
         <br />
         {/* <button onClick={this.submitGameMode} value="live_game">Live Game</button> */}
-        <Button onClick={this.submitGameMode} value="live_game" variant="contained" size="small" className={classes.game}>
+        <Button onClick={ () => this.submitGameMode('live_game')} value="live_game" variant="contained" size="small" className={classes.game}>
           Live Game
       </Button>
-        <Button onClick={this.submitGameMode} value="practice" variant="contained" size="small" className={classes.game}>
+        <Button onClick={ () => this.submitGameMode('practice')} value="practice" variant="contained" size="small" className={classes.game}>
           Practice
       </Button>
         {/* <button onClick={this.submitGameMode} value="practice">Practice</button> */}
