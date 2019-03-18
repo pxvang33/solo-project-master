@@ -36,7 +36,7 @@ CREATE TABLE "box_score" (
 
 ### SETUP
 
-Create your database and tables using the provided `data.sql` file. Start the server.
+Create your database and tables using the provided `database.sql` file. Start the server.
 
 ```
 npm install
