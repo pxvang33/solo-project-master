@@ -170,8 +170,8 @@ class PlayerHistory extends Component {
                     </TabContainer>}
                     {/* {value === 2 && <TabContainer>Item Three</TabContainer>} */}
                 </div>
-                <LiveGameChart />
-                {/* <LiveGameChart2 /> */}
+                {/* <LiveGameChart /> */}
+                <LiveGameChart2 />
             </div>
         )
     }

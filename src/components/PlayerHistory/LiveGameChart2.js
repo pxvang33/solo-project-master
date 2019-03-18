@@ -7,35 +7,19 @@ class LiveGameChart2 extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            chartData: {
-                labels: ['[PLACEHOLDER]', 'St.Paul', 'Rochester', 'Duluth', 'Bloomington', 'Brooklyn Park'],
-                datasets: [
-                    {
-                        label: 'Points',
-                        data: [411452, 300820, 112683, 86066, 85417, 79462],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                        ],
-                    },
 
-                ]
-
-            }
-        }
-        console.log('state', this.props.reduxStore);
 
     }
-    static defaultProps = {
-        displayTitle: true,
-        displayLegend: true,
-        legendPosition: 'left'
-    }
+    // static defaultProps = {
+    //     displayTitle: true,
+    //     displayLegend: true,
+    //     legendPosition: 'top'
+        
+    // }
     componentDidMount() {
         this.getBoxscore();
         console.log('this.props', this.props.reduxStore);
 
-        // this.getPracticeBoxscore();
     }
 
     getBoxscore = () => {
@@ -43,56 +27,37 @@ class LiveGameChart2 extends Component {
         this.props.dispatch(action)
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.reduxStore.boxscore.boxscoreHistory !== this.props.reduxStore.boxscore.boxscoreHistory) {
-
-            // const playerNameArray = this.props.reduxStore.boxscore.boxscoreHistory.map()
-
-            this.setState({
-                ...this.state,
-                chartData: {
-                    ...this.state.chartData,
-                    labels: [this.props.reduxStore.boxscore.boxscoreHistory[0].player_name, this.props.reduxStore.boxscore.boxscoreHistory[1].player_name, 'Rochester', 'Duluth', 'Bloomington', 'Brooklyn Park'],
-                    datasets: [{
-                        label: 'points',
-                        data: [this.props.reduxStore.boxscore.boxscoreHistory[0].PTS, this.props.reduxStore.boxscore.boxscoreHistory[1].PTS, 33],
-                        // backgroundColor: [
-                        //     'rgba(255, 99, 132, 0.6)',], 
-                    }]
-                }
-            });
-        }
-    }
 
     render() {
         console.log('this.props', this.props.reduxStore);
+        const playerNameArray = this.props.reduxStore.boxscore.boxscoreHistory.map((name) => {
+            return name.player_name
+        });
+        const ptsArray = this.props.reduxStore.boxscore.boxscoreHistory.map((total) => {
+            return total.PTS
+        });
 
-        //     let chart = {
-        //         labels: [this.props.reduxStore.boxscore.boxscoreHistory[0].player_name, 'St.Paul', 'Rochester', 'Duluth', 'Bloomington', 'Brooklyn Park'],
-        //         datasets: [
-        //             {
-        //                 label: 'Population',
-        //                 data: [411452, 300820, 112683, 86066, 85417, 79462]
-        //             }
-        //         ],
-        //         backgroundColor: [
-        //             'rgba(255, 99, 132, 0.6)',
-        //             'rgba(54, 162, 235, 0.6)',
-        //             'rgba(255, 206, 86, 0.6)',
-        //             'rgba(75, 192, 192, 0.6)',
-        //             'rgba(153, 102, 255, 0.6)',
-        //             'rgba(255, 159, 64, 0.6)',
-        //             'rgba(255, 99, 132, 0.6)'
-        //         ]
-
-        // }
+            let chart = {
+                labels: playerNameArray,
+                datasets: [
+                    {
+                        label: ['PointsYup', 'more'],
+                        data: ptsArray,
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56'
+                        ],
+                    }
+                ],
+        }
         return (
 
 
             <div className="chart">
                 CHART
                 <Bar
-                    data={this.state.chartData}
+                    data={chart}
                     width={100}
                     height={200}
                     options={{
@@ -103,7 +68,15 @@ class LiveGameChart2 extends Component {
                         },
                         legend: {
                             display: true,
-                            position: this.props.legendPosition
+                            position: 'right'
+                        },
+                        scales: {
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Points'
+                                }
+                            }]
                         }
                     }}
                 />
