@@ -35,6 +35,21 @@ CREATE TABLE "box_score" (
  "player_id" INT REFERENCES "player");
 
 ```
+
+### SETUP
+
+Create your database and tables using the provided `data.sql` file. Start the server.
+
+```
+npm install
+npm run server
+```
+
+Now that the server is running, open a new terminal tab with `cmd + t` and start the react client app.
+
+```
+npm run client
+```
 ## Features
 
 * Home screen allows you to add and select players
