@@ -6,7 +6,6 @@ function* boxscoreSaga() {
     yield takeLatest('ADD_BOXSCORE', addBoxscore)
     yield takeLatest('DELETE_BOXSCORE', deleteBoxscore)
     yield takeLatest('UPDATE_LIVE_GAME_BOXSCORE', updateLiveGameBoxscore)
-    // yield takeLatest('FETCH_EDIT_LIVE_GAME_BOXSCORE', fetchEditLiveGameBoxscore )
 }
 function* fetchBoxscoreHistory() {
     try {
@@ -17,17 +16,7 @@ function* fetchBoxscoreHistory() {
         console.log('error in fetchBoxscoreHistory GET', error);
     }
 }
-// function* fetchEditLiveGameBoxscore(action) {
-//     let idOfBoxscore = action.payload;
-//     console.log('in delete boxscore', idOfBoxscore);
-//     try {
-//         yield axios.get(`/api/boxscore/${idOfBoxscore}`);
-//         let nextAction = { type: 'SET_EDIT_LIVE_GAME_BOXSCORE_HISTORY' };
-//         yield put(nextAction);
-//     } catch (error) {
-//         console.log('in delete error', error);
-//     }
-// }
+
 function* updateLiveGameBoxscore(action) {
     let boxscore = action.payload.id;
     console.log('in UPDATE put boxscore', boxscore);
@@ -39,8 +28,6 @@ function* updateLiveGameBoxscore(action) {
         console.log('in put error', error);
     }
 }
-
-
 function* addBoxscore(action) {
     try {
         yield axios.post('/api/boxscore', action.payload);

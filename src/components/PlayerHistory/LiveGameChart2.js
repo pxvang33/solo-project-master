@@ -59,7 +59,7 @@ class LiveGameChart2 extends Component {
                 <Bar
                     data={chart}
                     width={100}
-                    height={200}
+                    height={350}
                     options={{
                         maintainAspectRatio: false,
                         title: {
