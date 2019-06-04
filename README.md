@@ -12,8 +12,6 @@ Before you get started, make sure you have the following software installed on y
 
 ## Create database and table
 
-Create a new database called `prime_app` and create a `person` table:
-
 ```SQL
 CREATE TABLE "person" (
     "id" SERIAL PRIMARY KEY,
@@ -34,6 +32,21 @@ CREATE TABLE "box_score" (
  "TO" INT DEFAULT 0, "PTS" INT DEFAULT 0, "game_mode" VARCHAR (15) NOT NULL, 
  "player_id" INT REFERENCES "player");
 
+```
+
+### SETUP
+
+Create your database and tables using the provided `database.sql` file. Start the server.
+
+```
+npm install
+npm run server
+```
+
+Now that the server is running, open a new terminal tab with `cmd + t` and start the react client app.
+
+```
+npm run client
 ```
 ## Features
 
