@@ -10,8 +10,6 @@ import Select from '@material-ui/core/Select';
 // import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import blue from '@material-ui/core/colors/blue';
-
-
 // import { Link } from 'react-router-dom';
 // import LogOutButton from '../LogOutButton/LogOutButton';
 
@@ -85,7 +83,6 @@ class UserPage extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_PLAYER' });
-
   }
 
   playerNameChange = (event) => {
@@ -102,7 +99,6 @@ class UserPage extends Component {
     let playerToAdd = this.state.newPlayer;
     let action = { type: 'ADD_PLAYER_NAME', payload: playerToAdd };
     this.props.dispatch(action);
-    
   } // end addPlayer
 
   playerIdChange = (event) => {
