@@ -41,7 +41,7 @@ class LiveGameChart2 extends Component {
                 labels: playerNameArray,
                 datasets: [
                     {
-                        label: ['PointsYup', 'more'],
+                        label: ['points'],
                         data: ptsArray,
                         backgroundColor: [
                             '#FF6384',
